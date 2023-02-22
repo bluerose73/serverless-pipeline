@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: compression
+spec:
+  template:
+    spec:
+      containers:
+        - image: ghcr.io/bluerose73/311.compression
+          ports:
+            - containerPort: 9001
+          env:
+            - name: TARGET
+              value: "World"
+          imagePullPolicy: Never
