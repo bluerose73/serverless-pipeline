@@ -13,8 +13,12 @@ def cli(trigger_config, function_config):
         func_config = json.load(f)[function_name]
 
     r = requests.post(trig_config['url'], json=func_config['post-json'])
-    print('[Json Reply]')
-    print(json.dumps(r.json(), indent=4))
+    if r.status_code == 200:
+        print('[Json Reply]')
+        print(json.dumps(r.json(), indent=4))
+    else:
+        print(r.text)
+        
 
 if __name__ == '__main__':
     cli()

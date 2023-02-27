@@ -6,17 +6,26 @@ import stat
 import subprocess
 
 
-from . import storage
+import storage
 client = storage.storage.get_instance()
 
 SCRIPT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 
 def call_ffmpeg(args):
+    # IMPORTANT: uncomment this block on linux
     ret = subprocess.run([os.path.join(SCRIPT_DIR, 'ffmpeg', 'ffmpeg'), '-y'] + args,
             #subprocess might inherit Lambda's input for some reason
             stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT
     )
+
+    # IMPORTANT: This block runs on Windows only
+    # ret = subprocess.run(['ffmpeg', '-y'] + args,
+    #         #subprocess might inherit Lambda's input for some reason
+    #         stdin=subprocess.DEVNULL,
+    #         stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+    # )
+
     if ret.returncode != 0:
         print('Invocation of ffmpeg failed!')
         print('Out: ', ret.stdout.decode('utf-8'))
@@ -58,6 +67,9 @@ def handler(event):
     duration = event.get('object').get('duration')
     op = event.get('object').get('op')
     download_path = '/tmp/{}'.format(key)
+    # download_path = '/tmp/{}-{}'.format(key, uuid.uuid4())
+    if not os.path.exists(os.path.dirname(download_path)):
+        os.makedirs(os.path.dirname(download_path))
 
     # Restore executable permission
     ffmpeg_binary = os.path.join(SCRIPT_DIR, 'ffmpeg', 'ffmpeg')
