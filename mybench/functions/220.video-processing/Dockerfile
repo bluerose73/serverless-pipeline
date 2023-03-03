@@ -9,4 +9,11 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.
 
 COPY . .
 
+RUN  apt-get update \
+  && apt-get install -y wget \
+  && apt-get install xz-utils \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN ["/bin/bash", "-c", "./init.sh"]
+
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
