@@ -10,7 +10,10 @@ class storage:
     client = None
 
     def __init__(self):
-        self.client = boto3.client('s3')
+        self.client = boto3.client(
+            's3',
+            endpoint_url = os.environ['S3_URL']
+        )
 
     @staticmethod
     def unique_name(name):
