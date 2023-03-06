@@ -1,0 +1,18 @@
+{
+    "url": "http://127.0.0.1:8000/",
+    "@functions": ["311.compression", "210.thumbnailer"],
+    "function": "311.compression",
+    "bucket": {
+        "input": "msj-sebs-input",
+        "output": "msj-sebs-output"
+    },
+    "invocation": {
+        "@frequency": "average number of invocations per second",
+        "frequency": 10,
+
+        "@distribution": ["uniform", "poisson", "oneshot", "trace"],
+        "distribution": "uniform",
+        
+        "trace-file": "placeholder"
+    }
+}

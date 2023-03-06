@@ -1,0 +1,39 @@
+{
+    "210.thumbnailer":{
+        "post-json":{
+            "bucket":{
+                "input": "msj-sebs-input",
+                "output": "msj-sebs-output"
+            },
+            "object":{
+                "key": "210.thumbnailer/9_cobblestone-granite-pebbles-1029604.jpg",
+                "width": 200,
+                "height": 200
+            }
+        }
+    },
+    "220.video-processing":{
+        "post-json":{
+            "bucket":{
+                "input": "msj-sebs-input",
+                "output": "msj-sebs-output"
+            },
+            "object":{
+                "key": "220.video-processing/city.mp4",
+                "op": "watermark",
+                "duration": 1
+            }
+        }
+    },
+    "311.compression":{
+        "post-json":{
+            "bucket":{
+                "input": "msj-sebs-input",
+                "output": "msj-sebs-output"
+            },
+            "object":{
+                "key": "311.compression/acmart-master"
+            }
+        }
+    }
+}
