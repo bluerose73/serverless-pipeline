@@ -11,10 +11,13 @@ def upload_files(data_root, data_dir, bucket):
             bucket.upload_file(Filename=filepath, Key=file_name)
 
 if __name__ == '__main__':
-    s3 = boto3.resource('s3')
-    with open('../meta-config.json') as f:
+    s3 = boto3.resource(
+        's3',
+        endpoint_url = os.environ['S3_ENDPOINT_URL']
+    )
+    with open('../trigger-config.json') as f:
         metaconf = json.load(f)
-    benchmarks = metaconf["benchmarks"]
+
     upload_bucket = s3.Bucket(metaconf['bucket']['input'])
 
     print('Uploading files...')

@@ -1,7 +1,7 @@
 {
-    "url": "http://127.0.0.1:8000/",
+    "url": "http://127.0.0.1:5000/",
     "@functions": ["311.compression", "210.thumbnailer"],
-    "function": "311.compression",
+    "function": "210.thumbnailer",
     "bucket": {
         "input": "msj-sebs-input",
         "output": "msj-sebs-output"

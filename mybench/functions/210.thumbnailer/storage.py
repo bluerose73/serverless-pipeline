@@ -12,7 +12,7 @@ class storage:
     def __init__(self):
         self.client = boto3.client(
             's3',
-            endpoint_url = os.environ['S3_URL']
+            endpoint_url = os.environ['S3_ENDPOINT_URL']
         )
 
     @staticmethod
