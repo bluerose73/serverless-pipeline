@@ -17,6 +17,9 @@ def cli(trigger_config, function_config, function):
     with open(function_config) as f:
         func_config = json.load(f)[function_name]
 
+    print('[Json Sent]')
+    print(func_config['post-json'])
+
     r = requests.post(trig_config['url'], json=func_config['post-json'])
     if r.status_code == 200:
         print('[Json Reply]')

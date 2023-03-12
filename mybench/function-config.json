@@ -21,7 +21,7 @@
             "object":{
                 "key": "220.video-processing/city.mp4",
                 "op": "watermark",
-                "duration": 1
+                "duration": 40
             }
         }
     },
